@@ -30,6 +30,7 @@ class StopReorder(BaseModel):
 class TripStopResponse(BaseModel):
     id: str
     trip_id: str
+    city_id: str
     city_name: str
     country: str
     arrival_date: datetime

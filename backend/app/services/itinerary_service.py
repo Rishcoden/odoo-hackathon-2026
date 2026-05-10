@@ -55,6 +55,7 @@ def add_trip_stop(db: Session, user: User, trip_id: str, stop_in: TripStopCreate
     return TripStopResponse(
         id=trip_stop.id,
         trip_id=trip_stop.trip_id,
+        city_id=city.id,
         city_name=city.city_name,
         country=city.country,
         arrival_date=trip_stop.arrival_date,
@@ -69,6 +70,7 @@ def get_trip_stops(db: Session, user: User, trip_id: str):
     return [TripStopResponse(
         id=s.id,
         trip_id=s.trip_id,
+        city_id=s.city_id,
         city_name=s.city.city_name,
         country=s.city.country,
         arrival_date=s.arrival_date,
@@ -97,6 +99,7 @@ def update_trip_stop(db: Session, user: User, stop_id: str, stop_in: TripStopUpd
     return TripStopResponse(
         id=stop.id,
         trip_id=stop.trip_id,
+        city_id=stop.city_id,
         city_name=stop.city.city_name,
         country=stop.city.country,
         arrival_date=stop.arrival_date,

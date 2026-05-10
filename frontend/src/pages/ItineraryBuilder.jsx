@@ -198,7 +198,13 @@ export default function ItineraryBuilder() {
                         </p>
                       </div>
                       
-                      <div>
+                      <div className="flex gap-3">
+                        <button 
+                          onClick={() => navigate(`/trips/${tripId}/stops/${stop.id}/activities`)}
+                          className="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
+                        >
+                          Activities
+                        </button>
                         <button 
                           onClick={() => handleDeleteStop(stop.id)}
                           className="text-red-500 hover:text-red-700 text-sm font-medium"

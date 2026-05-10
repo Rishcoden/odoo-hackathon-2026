@@ -14,3 +14,4 @@ class City(Base):
     created_at = Column(DateTime, default=datetime.utcnow)
 
     trip_stops = relationship("TripStop", back_populates="city")
+    activities = relationship("Activity", back_populates="city", cascade="all, delete-orphan")
