@@ -71,17 +71,9 @@ export default function Budget() {
       <div className="max-w-6xl mx-auto space-y-8">
         
         {/* Header */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-800">Trip Budget & Expenses</h1>
-            <p className="text-gray-500 mt-1">Aggregated financial overview for your trip.</p>
-          </div>
-          <button 
-            onClick={() => navigate('/my-trips')}
-            className="bg-gray-200 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-300 transition"
-          >
-            Back to Trips
-          </button>
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 mb-8">
+          <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">Trip Budget & Expenses</h1>
+          <p className="text-slate-500 mt-2 font-medium">Aggregated financial overview for your trip.</p>
         </div>
 
         {/* Top Summary Cards */}

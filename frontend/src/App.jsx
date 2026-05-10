@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Layout from './components/Layout';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
@@ -17,19 +18,22 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Public Routes without Navbar */}
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/create-trip" element={<CreateTrip />} />
-        <Route path="/my-trips" element={<MyTrips />} />
-        <Route path="/trips/:id/itinerary" element={<ItineraryBuilder />} />
-        <Route path="/trips/:tripId/stops/:stopId/activities" element={<StopActivities />} />
-        <Route path="/trips/:id/budget" element={<Budget />} />
-        <Route path="/trips/:id/packing" element={<PackingList />} />
         <Route path="/shared/:token" element={<PublicItinerary />} />
-        <Route path="/analytics" element={<Analytics />} />
-        <Route path="/trips/:id/notes" element={<TripNotes />} />
+
+        {/* Protected Routes wrapped in Global Layout */}
+        <Route path="/dashboard" element={<Layout><Dashboard /></Layout>} />
+        <Route path="/create-trip" element={<Layout><CreateTrip /></Layout>} />
+        <Route path="/my-trips" element={<Layout><MyTrips /></Layout>} />
+        <Route path="/trips/:id/itinerary" element={<Layout><ItineraryBuilder /></Layout>} />
+        <Route path="/trips/:tripId/stops/:stopId/activities" element={<Layout><StopActivities /></Layout>} />
+        <Route path="/trips/:id/budget" element={<Layout><Budget /></Layout>} />
+        <Route path="/trips/:id/packing" element={<Layout><PackingList /></Layout>} />
+        <Route path="/analytics" element={<Layout><Analytics /></Layout>} />
+        <Route path="/trips/:id/notes" element={<Layout><TripNotes /></Layout>} />
       </Routes>
     </Router>
   );

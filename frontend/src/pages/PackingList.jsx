@@ -77,20 +77,12 @@ export default function PackingList() {
       <div className="max-w-4xl mx-auto space-y-8">
         
         {/* Header */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex-1 w-full">
-            <h1 className="text-3xl font-bold text-gray-800">Packing Checklist</h1>
-            <div className="mt-4 w-full bg-gray-200 rounded-full h-2.5">
-              <div className="bg-indigo-600 h-2.5 rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div>
-            </div>
-            <p className="text-sm text-gray-500 mt-2">{packedItems.length} of {items.length} packed ({progress}%)</p>
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 mb-8">
+          <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">Packing Checklist</h1>
+          <div className="mt-4 w-full bg-slate-100 rounded-full h-3">
+            <div className="bg-indigo-600 h-3 rounded-full transition-all duration-500 shadow-sm" style={{ width: `${progress}%` }}></div>
           </div>
-          <button 
-            onClick={() => navigate('/my-trips')}
-            className="whitespace-nowrap bg-gray-200 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-300 transition"
-          >
-            Back to Trips
-          </button>
+          <p className="text-sm text-slate-500 mt-2 font-medium">{packedItems.length} of {items.length} packed ({progress}%)</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -50,106 +50,119 @@ export default function MyTrips() {
     }
   };
 
-  const handleEdit = (tripId) => {
-    alert(`Edit trip ${tripId} - Future feature placeholder`);
-  };
-
   const handleView = (tripId) => {
     navigate(`/trips/${tripId}/itinerary`);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6 sm:p-10">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
+    <div className="min-h-screen bg-slate-50 p-6 sm:p-10 font-sans pb-24">
+      <div className="max-w-7xl mx-auto space-y-8">
+        
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800">My Trips</h1>
-            <p className="text-gray-500 mt-1">Manage and organize all your travels.</p>
+            <h1 className="text-3xl md:text-4xl font-extrabold text-slate-800 tracking-tight">My Trips</h1>
+            <p className="text-slate-500 mt-2 font-medium">Manage, organize, and track all your travel itineraries.</p>
           </div>
-          <div className="flex gap-4 items-center">
-            <select 
-              value={sortBy} 
-              onChange={(e) => setSortBy(e.target.value)}
-              className="px-4 py-2 border rounded-md focus:ring-indigo-500 focus:border-indigo-500 bg-white shadow-sm"
-            >
-              <option value="created_at">Recently Created</option>
-              <option value="start_date">Travel Date</option>
-            </select>
-            <button 
-              onClick={() => navigate('/analytics')}
-              className="bg-gray-200 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-300 transition"
-            >
-              Analytics
-            </button>
-            <button 
-              onClick={() => navigate('/create-trip')}
-              className="bg-indigo-600 text-white px-5 py-2 rounded-md hover:bg-indigo-700 transition"
-            >
-              + New Trip
-            </button>
+          <div className="flex flex-wrap gap-3 w-full md:w-auto">
+            <div className="relative flex-grow md:flex-grow-0">
+              <select 
+                value={sortBy} 
+                onChange={(e) => setSortBy(e.target.value)}
+                className="w-full appearance-none px-4 py-2.5 pr-10 border border-slate-200 rounded-xl font-medium text-slate-700 bg-slate-50 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors cursor-pointer"
+              >
+                <option value="created_at">Recently Created</option>
+                <option value="start_date">Travel Date</option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-500">
+                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+              </div>
+            </div>
           </div>
         </div>
 
         {loading ? (
-          <div className="text-center p-8 text-gray-500">Loading trips...</div>
+          <div className="py-20 flex justify-center">
+            <div className="animate-pulse flex flex-col items-center">
+              <div className="h-12 w-12 bg-indigo-200 rounded-full mb-4"></div>
+              <div className="text-indigo-400 font-medium tracking-widest uppercase">Loading Trips</div>
+            </div>
+          </div>
         ) : trips.length === 0 ? (
-          <div className="text-center p-12 bg-white rounded-lg shadow-sm border border-gray-100">
-            <h3 className="text-xl font-medium text-gray-700">No trips found</h3>
-            <p className="text-gray-500 mt-2">You haven't planned any trips yet.</p>
+          <div className="bg-white rounded-2xl shadow-sm border border-slate-100 py-24 text-center px-6">
+            <div className="text-6xl mb-6">🏝️</div>
+            <h3 className="text-2xl font-bold text-slate-800">Your travel canvas is empty</h3>
+            <p className="text-slate-500 mt-2 max-w-md mx-auto font-medium">It looks like you haven't planned any trips yet. Create your first itinerary to start building memories.</p>
             <button 
               onClick={() => navigate('/create-trip')}
-              className="mt-4 bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition"
+              className="mt-8 bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-indigo-700 transition-all shadow-md hover:shadow-lg active:scale-95"
             >
-              Start Planning
+              Start Planning Now
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {trips.map(trip => (
-              <div key={trip.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden flex flex-col">
-                {trip.cover_image ? (
-                  <img src={`http://localhost:8000${trip.cover_image}`} alt={trip.title} className="w-full h-48 object-cover" />
-                ) : (
-                  <div className="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-400">
-                    No Cover Image
-                  </div>
-                )}
+              <div key={trip.id} className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden flex flex-col group transform hover:-translate-y-1">
                 
-                <div className="p-5 flex-grow">
-                  <div className="flex justify-between items-start">
-                    <h2 className="text-xl font-bold text-gray-800">{trip.title}</h2>
-                    <span className="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full font-medium">
-                      {trip.destination_count} Dest.
+                {/* Image Section */}
+                <div className="relative h-52 overflow-hidden bg-slate-100">
+                  {trip.cover_image ? (
+                    <img src={`http://localhost:8000${trip.cover_image}`} alt={trip.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-slate-300 text-4xl bg-gradient-to-br from-slate-100 to-slate-200">
+                      ✈️
+                    </div>
+                  )}
+                  {/* Status Badges Overlay */}
+                  <div className="absolute top-4 left-4 flex gap-2">
+                    <span className="bg-white/90 backdrop-blur-sm text-indigo-700 text-xs px-3 py-1.5 rounded-lg font-bold shadow-sm">
+                      {trip.destination_count} Stops
                     </span>
+                    {trip.is_public && (
+                      <span className="bg-green-500/90 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-lg font-bold shadow-sm">
+                        Public
+                      </span>
+                    )}
                   </div>
+                </div>
+                
+                {/* Content Section */}
+                <div className="p-6 flex-grow flex flex-col">
+                  <h2 className="text-2xl font-extrabold text-slate-800 line-clamp-1 group-hover:text-indigo-600 transition-colors">{trip.title}</h2>
                   
-                  <p className="text-sm text-gray-600 mt-2 line-clamp-2">
+                  <p className="text-sm text-slate-500 mt-3 line-clamp-2 leading-relaxed flex-grow font-medium">
                     {trip.description || 'No description provided.'}
                   </p>
                   
-                  <div className="mt-4 space-y-2 text-sm text-gray-700">
-                    <div className="flex justify-between">
-                      <span className="font-medium">Dates:</span>
-                      <span>
-                        {trip.start_date ? new Date(trip.start_date).toLocaleDateString() : 'TBD'} - 
-                        {trip.end_date ? new Date(trip.end_date).toLocaleDateString() : 'TBD'}
-                      </span>
+                  <div className="mt-6 pt-4 border-t border-slate-100 grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Dates</p>
+                      <p className="text-sm font-semibold text-slate-700">
+                        {trip.start_date ? new Date(trip.start_date).toLocaleDateString(undefined, {month: 'short', day: 'numeric'}) : 'TBD'} - 
+                        {trip.end_date ? new Date(trip.end_date).toLocaleDateString(undefined, {month: 'short', day: 'numeric'}) : 'TBD'}
+                      </p>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="font-medium">Budget:</span>
-                      <span>{trip.budget_limit ? `$${trip.budget_limit.toFixed(2)}` : 'Flexible'}</span>
+                    <div>
+                      <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Budget</p>
+                      <p className="text-sm font-bold text-green-600">
+                        {trip.budget_limit ? `$${trip.budget_limit.toLocaleString()}` : 'Flexible'}
+                      </p>
                     </div>
                   </div>
                 </div>
                 
-                <div className="px-5 py-4 border-t border-gray-100 bg-gray-50 flex justify-between gap-2 flex-wrap">
-                  <button onClick={() => handleView(trip.id)} className="flex-1 text-indigo-600 font-medium hover:text-indigo-800 text-sm">View</button>
-                  <button onClick={() => handleShare(trip.id)} className="flex-1 text-purple-600 font-medium hover:text-purple-800 text-sm">Share</button>
-                  <button onClick={() => navigate(`/trips/${trip.id}/budget`)} className="flex-1 text-green-600 font-medium hover:text-green-800 text-sm">Budget</button>
-                  <button onClick={() => navigate(`/trips/${trip.id}/packing`)} className="flex-1 text-blue-600 font-medium hover:text-blue-800 text-sm">Pack</button>
-                  <button onClick={() => navigate(`/trips/${trip.id}/notes`)} className="flex-1 text-amber-600 font-medium hover:text-amber-800 text-sm">Notes</button>
-                  <button onClick={() => handleEdit(trip.id)} className="flex-1 text-gray-600 font-medium hover:text-gray-800 text-sm">Edit</button>
-                  <button onClick={() => handleDelete(trip.id)} className="flex-1 text-red-600 font-medium hover:text-red-800 text-sm">Delete</button>
+                {/* Action Buttons Section */}
+                <div className="p-4 bg-slate-50 border-t border-slate-100 flex flex-wrap gap-2 justify-between">
+                  <button onClick={() => handleView(trip.id)} className="flex-1 bg-white border border-slate-200 text-indigo-600 font-bold py-2 rounded-lg hover:bg-indigo-50 hover:border-indigo-200 transition-all shadow-sm text-sm">View</button>
+                  <button onClick={() => handleShare(trip.id)} className="flex-1 bg-white border border-slate-200 text-purple-600 font-bold py-2 rounded-lg hover:bg-purple-50 hover:border-purple-200 transition-all shadow-sm text-sm">Share</button>
+                  <button onClick={() => navigate(`/trips/${trip.id}/budget`)} className="flex-1 bg-white border border-slate-200 text-green-600 font-bold py-2 rounded-lg hover:bg-green-50 hover:border-green-200 transition-all shadow-sm text-sm">Cost</button>
+                  
+                  <div className="w-full flex gap-2 mt-1">
+                    <button onClick={() => navigate(`/trips/${trip.id}/packing`)} className="flex-1 bg-white border border-slate-200 text-blue-600 font-bold py-2 rounded-lg hover:bg-blue-50 hover:border-blue-200 transition-all shadow-sm text-sm">Pack</button>
+                    <button onClick={() => navigate(`/trips/${trip.id}/notes`)} className="flex-1 bg-white border border-slate-200 text-amber-600 font-bold py-2 rounded-lg hover:bg-amber-50 hover:border-amber-200 transition-all shadow-sm text-sm">Notes</button>
+                    <button onClick={() => handleDelete(trip.id)} className="flex-none bg-white border border-slate-200 text-red-500 font-bold py-2 px-4 rounded-lg hover:bg-red-50 hover:border-red-200 transition-all shadow-sm text-sm">Del</button>
+                  </div>
                 </div>
               </div>
             ))}

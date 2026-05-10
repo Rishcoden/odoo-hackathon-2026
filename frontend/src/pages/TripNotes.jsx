@@ -100,17 +100,9 @@ export default function TripNotes() {
       <div className="max-w-5xl mx-auto space-y-8">
         
         {/* Header */}
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-800">Trip Journal</h1>
-            <p className="text-gray-500 mt-1">Record memories, important details, and travel logs.</p>
-          </div>
-          <button 
-            onClick={() => navigate('/my-trips')}
-            className="whitespace-nowrap bg-gray-200 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-300 transition"
-          >
-            Back to Trips
-          </button>
+        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 mb-8">
+          <h1 className="text-3xl font-extrabold text-slate-800 tracking-tight">Trip Journal</h1>
+          <p className="text-slate-500 mt-2 font-medium">Record memories, important details, and travel logs.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
