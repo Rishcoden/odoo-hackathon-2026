@@ -43,7 +43,7 @@ export default function MyTrips() {
   };
 
   const handleView = (tripId) => {
-    alert(`View trip details for ${tripId} - Future feature placeholder`);
+    navigate(`/trips/${tripId}/itinerary`);
   };
 
   return (

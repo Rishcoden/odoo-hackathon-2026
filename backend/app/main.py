@@ -2,10 +2,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import os
-from app.routes import auth, dashboard, trips
+from app.routes import auth, dashboard, trips, itinerary
 from app.database.connection import engine, Base
 from app.models.user import User
 from app.models.trip import Trip
+from app.models.city import City
+from app.models.trip_stop import TripStop
 
 # Create tables if they don't exist
 Base.metadata.create_all(bind=engine)
@@ -33,6 +35,7 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(dashboard.router)
 app.include_router(trips.router)
+app.include_router(itinerary.router)
 
 @app.get("/")
 def root():

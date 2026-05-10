@@ -5,6 +5,7 @@ import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import CreateTrip from './pages/CreateTrip';
 import MyTrips from './pages/MyTrips';
+import ItineraryBuilder from './pages/ItineraryBuilder';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/create-trip" element={<CreateTrip />} />
         <Route path="/my-trips" element={<MyTrips />} />
+        <Route path="/trips/:id/itinerary" element={<ItineraryBuilder />} />
       </Routes>
     </Router>
   );
