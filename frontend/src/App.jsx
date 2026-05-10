@@ -7,6 +7,7 @@ import CreateTrip from './pages/CreateTrip';
 import MyTrips from './pages/MyTrips';
 import ItineraryBuilder from './pages/ItineraryBuilder';
 import StopActivities from './pages/StopActivities';
+import Budget from './pages/Budget';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/my-trips" element={<MyTrips />} />
         <Route path="/trips/:id/itinerary" element={<ItineraryBuilder />} />
         <Route path="/trips/:tripId/stops/:stopId/activities" element={<StopActivities />} />
+        <Route path="/trips/:id/budget" element={<Budget />} />
       </Routes>
     </Router>
   );

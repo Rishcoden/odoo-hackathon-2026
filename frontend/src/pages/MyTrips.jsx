@@ -132,6 +132,7 @@ export default function MyTrips() {
                 
                 <div className="px-5 py-4 border-t border-gray-100 bg-gray-50 flex justify-between gap-2">
                   <button onClick={() => handleView(trip.id)} className="flex-1 text-indigo-600 font-medium hover:text-indigo-800 text-sm">View</button>
+                  <button onClick={() => navigate(`/trips/${trip.id}/budget`)} className="flex-1 text-green-600 font-medium hover:text-green-800 text-sm">Budget</button>
                   <button onClick={() => handleEdit(trip.id)} className="flex-1 text-gray-600 font-medium hover:text-gray-800 text-sm">Edit</button>
                   <button onClick={() => handleDelete(trip.id)} className="flex-1 text-red-600 font-medium hover:text-red-800 text-sm">Delete</button>
                 </div>

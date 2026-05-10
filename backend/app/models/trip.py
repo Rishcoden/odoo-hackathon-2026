@@ -19,3 +19,4 @@ class Trip(Base):
 
     owner = relationship("User", back_populates="trips")
     stops = relationship("TripStop", back_populates="trip", cascade="all, delete-orphan", order_by="TripStop.stop_order")
+    expenses = relationship("Expense", back_populates="trip", cascade="all, delete-orphan")

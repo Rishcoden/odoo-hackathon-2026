@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import os
-from app.routes import auth, dashboard, trips, itinerary, activities
+from app.routes import auth, dashboard, trips, itinerary, activities, budget
 from app.database.connection import engine, Base
 from app.models.user import User
 from app.models.trip import Trip
@@ -10,6 +10,7 @@ from app.models.city import City
 from app.models.trip_stop import TripStop
 from app.models.activity import Activity
 from app.models.trip_activity import TripActivity
+from app.models.expense import Expense
 
 # Create tables if they don't exist
 Base.metadata.create_all(bind=engine)
@@ -39,6 +40,7 @@ app.include_router(dashboard.router)
 app.include_router(trips.router)
 app.include_router(itinerary.router)
 app.include_router(activities.router)
+app.include_router(budget.router)
 
 @app.get("/")
 def root():
