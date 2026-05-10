@@ -10,6 +10,8 @@ from app.models.expense import Expense
 from app.models.packing_item import PackingItem
 from app.schemas.analytics import GlobalOverviewResponse, BudgetBreakdownResponse, TopCitiesResponse, CityStat, ActivityCategoryResponse
 
+from sqlalchemy import case
+
 def get_global_overview(db: Session, user: User) -> GlobalOverviewResponse:
     total_trips = db.query(func.count(Trip.id)).filter(Trip.user_id == user.id).scalar() or 0
     
@@ -19,11 +21,11 @@ def get_global_overview(db: Session, user: User) -> GlobalOverviewResponse:
 
     packing_stats = db.query(
         func.count(PackingItem.id).label('total'),
-        func.sum(func.cast(PackingItem.is_packed, func.integer())).label('packed')
+        func.sum(case((PackingItem.is_packed == True, 1), else_=0)).label('packed')
     ).join(Trip).filter(Trip.user_id == user.id).first()
     
-    total_items = packing_stats.total or 0
-    packed_items = packing_stats.packed or 0
+    total_items = getattr(packing_stats, 'total', 0) or 0
+    packed_items = getattr(packing_stats, 'packed', 0) or 0
     packing_completion_rate = round((packed_items / total_items) * 100, 1) if total_items > 0 else 0.0
 
     return GlobalOverviewResponse(
