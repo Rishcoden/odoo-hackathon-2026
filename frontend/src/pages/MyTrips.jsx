@@ -38,6 +38,18 @@ export default function MyTrips() {
     }
   };
 
+  const handleShare = async (tripId) => {
+    try {
+      const response = await api.post(`/trips/${tripId}/share`);
+      if (response.data.share_url) {
+        navigator.clipboard.writeText(response.data.share_url);
+        alert('Public link copied to clipboard!');
+      }
+    } catch (err) {
+      alert('Failed to generate share link');
+    }
+  };
+
   const handleEdit = (tripId) => {
     alert(`Edit trip ${tripId} - Future feature placeholder`);
   };
@@ -130,8 +142,9 @@ export default function MyTrips() {
                   </div>
                 </div>
                 
-                <div className="px-5 py-4 border-t border-gray-100 bg-gray-50 flex justify-between gap-2">
+                <div className="px-5 py-4 border-t border-gray-100 bg-gray-50 flex justify-between gap-2 flex-wrap">
                   <button onClick={() => handleView(trip.id)} className="flex-1 text-indigo-600 font-medium hover:text-indigo-800 text-sm">View</button>
+                  <button onClick={() => handleShare(trip.id)} className="flex-1 text-purple-600 font-medium hover:text-purple-800 text-sm">Share</button>
                   <button onClick={() => navigate(`/trips/${trip.id}/budget`)} className="flex-1 text-green-600 font-medium hover:text-green-800 text-sm">Budget</button>
                   <button onClick={() => navigate(`/trips/${trip.id}/packing`)} className="flex-1 text-blue-600 font-medium hover:text-blue-800 text-sm">Pack</button>
                   <button onClick={() => handleEdit(trip.id)} className="flex-1 text-gray-600 font-medium hover:text-gray-800 text-sm">Edit</button>

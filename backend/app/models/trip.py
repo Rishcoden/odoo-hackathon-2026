@@ -16,6 +16,9 @@ class Trip(Base):
     budget_limit = Column(Float, nullable=True)
     cover_image = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
+    
+    is_public = Column(Boolean, default=False)
+    public_share_token = Column(String, unique=True, index=True, nullable=True)
 
     owner = relationship("User", back_populates="trips")
     stops = relationship("TripStop", back_populates="trip", cascade="all, delete-orphan", order_by="TripStop.stop_order")

@@ -9,6 +9,7 @@ import ItineraryBuilder from './pages/ItineraryBuilder';
 import StopActivities from './pages/StopActivities';
 import Budget from './pages/Budget';
 import PackingList from './pages/PackingList';
+import PublicItinerary from './pages/PublicItinerary';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/trips/:tripId/stops/:stopId/activities" element={<StopActivities />} />
         <Route path="/trips/:id/budget" element={<Budget />} />
         <Route path="/trips/:id/packing" element={<PackingList />} />
+        <Route path="/shared/:token" element={<PublicItinerary />} />
       </Routes>
     </Router>
   );
