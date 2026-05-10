@@ -24,3 +24,4 @@ class Trip(Base):
     stops = relationship("TripStop", back_populates="trip", cascade="all, delete-orphan", order_by="TripStop.stop_order")
     expenses = relationship("Expense", back_populates="trip", cascade="all, delete-orphan")
     packing_items = relationship("PackingItem", back_populates="trip", cascade="all, delete-orphan")
+    notes = relationship("TripNote", back_populates="trip", cascade="all, delete-orphan")

@@ -147,6 +147,7 @@ export default function MyTrips() {
                   <button onClick={() => handleShare(trip.id)} className="flex-1 text-purple-600 font-medium hover:text-purple-800 text-sm">Share</button>
                   <button onClick={() => navigate(`/trips/${trip.id}/budget`)} className="flex-1 text-green-600 font-medium hover:text-green-800 text-sm">Budget</button>
                   <button onClick={() => navigate(`/trips/${trip.id}/packing`)} className="flex-1 text-blue-600 font-medium hover:text-blue-800 text-sm">Pack</button>
+                  <button onClick={() => navigate(`/trips/${trip.id}/notes`)} className="flex-1 text-amber-600 font-medium hover:text-amber-800 text-sm">Notes</button>
                   <button onClick={() => handleEdit(trip.id)} className="flex-1 text-gray-600 font-medium hover:text-gray-800 text-sm">Edit</button>
                   <button onClick={() => handleDelete(trip.id)} className="flex-1 text-red-600 font-medium hover:text-red-800 text-sm">Delete</button>
                 </div>

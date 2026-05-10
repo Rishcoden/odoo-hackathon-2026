@@ -18,3 +18,4 @@ class TripStop(Base):
     trip = relationship("Trip", back_populates="stops")
     city = relationship("City", back_populates="trip_stops")
     assigned_activities = relationship("TripActivity", back_populates="trip_stop", cascade="all, delete-orphan", order_by="TripActivity.scheduled_time")
+    notes = relationship("TripNote", back_populates="trip_stop")

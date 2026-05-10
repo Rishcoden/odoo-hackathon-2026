@@ -11,6 +11,7 @@ import Budget from './pages/Budget';
 import PackingList from './pages/PackingList';
 import PublicItinerary from './pages/PublicItinerary';
 import Analytics from './pages/Analytics';
+import TripNotes from './pages/TripNotes';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/trips/:id/packing" element={<PackingList />} />
         <Route path="/shared/:token" element={<PublicItinerary />} />
         <Route path="/analytics" element={<Analytics />} />
+        <Route path="/trips/:id/notes" element={<TripNotes />} />
       </Routes>
     </Router>
   );
