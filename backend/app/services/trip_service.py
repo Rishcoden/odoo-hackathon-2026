@@ -31,8 +31,13 @@ def create_trip(db: Session, user: User, trip_in: TripCreate, cover_image: Uploa
     db.refresh(db_trip)
     return db_trip
 
-def get_trips(db: Session, user: User):
-    return db.query(Trip).filter(Trip.user_id == user.id).all()
+def get_trips(db: Session, user: User, sort_by: str = "created_at"):
+    query = db.query(Trip).filter(Trip.user_id == user.id)
+    if sort_by == "start_date":
+        query = query.order_by(Trip.start_date.asc())
+    else:
+        query = query.order_by(Trip.created_at.desc())
+    return query.all()
 
 def get_trip(db: Session, user: User, trip_id: str):
     trip = db.query(Trip).filter(Trip.id == trip_id, Trip.user_id == user.id).first()

@@ -47,6 +47,12 @@ export default function Dashboard() {
           </div>
           <div className="space-x-3">
             <button 
+              onClick={() => navigate('/my-trips')}
+              className="bg-white text-indigo-600 border border-indigo-600 px-5 py-2 rounded-md hover:bg-indigo-50 transition"
+            >
+              My Trips
+            </button>
+            <button 
               onClick={() => navigate('/create-trip')}
               className="bg-indigo-600 text-white px-5 py-2 rounded-md hover:bg-indigo-700 transition"
             >

@@ -32,10 +32,11 @@ def create_trip(
 
 @router.get("", response_model=List[TripResponse])
 def get_all_trips(
+    sort_by: Optional[str] = "created_at",
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
-    return trip_service.get_trips(db, current_user)
+    return trip_service.get_trips(db, current_user, sort_by)
 
 @router.get("/{trip_id}", response_model=TripResponse)
 def get_trip_details(

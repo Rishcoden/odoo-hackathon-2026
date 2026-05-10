@@ -34,6 +34,7 @@ class TripResponse(TripBase):
     user_id: str
     cover_image: Optional[str] = None
     created_at: datetime
+    destination_count: int = 0
 
     class Config:
         from_attributes = True
