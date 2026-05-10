@@ -1,4 +1,5 @@
 from sqlalchemy import Column, String, DateTime
+from sqlalchemy.orm import relationship
 import uuid
 from datetime import datetime
 from app.database.connection import Base
@@ -11,3 +12,5 @@ class User(Base):
     email = Column(String, unique=True, index=True, nullable=False)
     password_hash = Column(String, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
+    
+    trips = relationship("Trip", back_populates="owner", cascade="all, delete-orphan")

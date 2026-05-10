@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import auth
+from app.routes import auth, dashboard
 from app.database.connection import engine, Base
+from app.models.user import User
+from app.models.trip import Trip
 
 # Create tables if they don't exist
 Base.metadata.create_all(bind=engine)
@@ -23,6 +25,7 @@ app.add_middleware(
 
 # Include Authentication Router
 app.include_router(auth.router)
+app.include_router(dashboard.router)
 
 @app.get("/")
 def root():
