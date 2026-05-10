@@ -10,6 +10,7 @@ import StopActivities from './pages/StopActivities';
 import Budget from './pages/Budget';
 import PackingList from './pages/PackingList';
 import PublicItinerary from './pages/PublicItinerary';
+import Analytics from './pages/Analytics';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/trips/:id/budget" element={<Budget />} />
         <Route path="/trips/:id/packing" element={<PackingList />} />
         <Route path="/shared/:token" element={<PublicItinerary />} />
+        <Route path="/analytics" element={<Analytics />} />
       </Routes>
     </Router>
   );

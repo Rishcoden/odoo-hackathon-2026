@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import os
-from app.routes import auth, dashboard, trips, itinerary, activities, budget, packing, public
+from app.routes import auth, dashboard, trips, itinerary, activities, budget, packing, public, analytics
 from app.database.connection import engine, Base
 from app.models.user import User
 from app.models.trip import Trip
@@ -44,6 +44,7 @@ app.include_router(activities.router)
 app.include_router(budget.router)
 app.include_router(packing.router)
 app.include_router(public.router)
+app.include_router(analytics.router)
 
 @app.get("/")
 def root():

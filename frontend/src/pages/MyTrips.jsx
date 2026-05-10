@@ -76,10 +76,10 @@ export default function MyTrips() {
               <option value="start_date">Travel Date</option>
             </select>
             <button 
-              onClick={() => navigate('/dashboard')}
+              onClick={() => navigate('/analytics')}
               className="bg-gray-200 text-gray-800 px-5 py-2 rounded-md hover:bg-gray-300 transition"
             >
-              Dashboard
+              Analytics
             </button>
             <button 
               onClick={() => navigate('/create-trip')}
