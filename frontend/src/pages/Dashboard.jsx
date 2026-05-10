@@ -45,15 +45,23 @@ export default function Dashboard() {
             <h1 className="text-3xl font-bold text-gray-800">Welcome back, {overview.user_name}! 👋</h1>
             <p className="text-gray-500 mt-1">Here is the overview of your travel plans.</p>
           </div>
-          <button 
-            onClick={() => {
-              localStorage.removeItem('token');
-              navigate('/login');
-            }}
-            className="bg-indigo-600 text-white px-5 py-2 rounded-md hover:bg-indigo-700 transition"
-          >
-            Logout
-          </button>
+          <div className="space-x-3">
+            <button 
+              onClick={() => navigate('/create-trip')}
+              className="bg-indigo-600 text-white px-5 py-2 rounded-md hover:bg-indigo-700 transition"
+            >
+              Create Trip
+            </button>
+            <button 
+              onClick={() => {
+                localStorage.removeItem('token');
+                navigate('/login');
+              }}
+              className="bg-red-500 text-white px-5 py-2 rounded-md hover:bg-red-600 transition"
+            >
+              Logout
+            </button>
+          </div>
         </div>
 
         {/* Overview Stats */}

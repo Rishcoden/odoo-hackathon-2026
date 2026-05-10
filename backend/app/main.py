@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import auth, dashboard
+from fastapi.staticfiles import StaticFiles
+import os
+from app.routes import auth, dashboard, trips
 from app.database.connection import engine, Base
 from app.models.user import User
 from app.models.trip import Trip
@@ -14,6 +16,10 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# Mount static files
+os.makedirs("uploads", exist_ok=True)
+app.mount("/static/uploads", StaticFiles(directory="uploads"), name="uploads")
+
 # Configure CORS for frontend access
 app.add_middleware(
     CORSMiddleware,
@@ -26,6 +32,7 @@ app.add_middleware(
 # Include Authentication Router
 app.include_router(auth.router)
 app.include_router(dashboard.router)
+app.include_router(trips.router)
 
 @app.get("/")
 def root():
